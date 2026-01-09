@@ -1,11 +1,20 @@
 /*
  * ============================================================
- * ⏱️ NoMore — TGerenciador de Tempo em Linha de Comando
+ * ⏱️ NoMore — Gerenciador de Tempo em Linha de Comando
  *
- * Versão: 1.0
+ * Versão: 1.1
  * Autor: Bandeirinha
  *
- * Copyright (C) 2025 Bandeirinha
+ * 🔔 NOTA DE ATUALIZAÇÃO
+ * ------------------------------------------------------------
+ * • Atualização para acompanhar o calendário real.
+ * • Exibição aprimorada de tempo (anos/meses quando aplicável).
+ * • Melhorias na apresentação dos cronômetros.
+ * • Manutenção da compatibilidade e preservação do funcionamento
+ *   clássico da versão 1.0 — sem quebra de comportamento.
+ * ------------------------------------------------------------
+ *
+ * Copyright (C) 2025-2026 Bandeirinha
  *
  * Este programa é software livre: você pode redistribuí-lo
  * e/ou modificá-lo sob os termos da Licença Pública Geral GNU
@@ -100,15 +109,47 @@ void carregar() {
     pthread_mutex_unlock(&mutex);
 }
 
+/* ========= CONVERSÃO DE TEMPO ========= */
+/* Conversão aproximada: 1 mês = 30 dias, 1 ano = 365 dias */
+typedef struct {
+    int anos;
+    int meses;
+    int dias;
+    int horas;
+    int minutos;
+    int segundos;
+} Duracao;
+
+Duracao converter_tempo(time_t diff) {
+    Duracao d;
+
+    d.anos = diff / (365 * 86400);
+    diff %= (365 * 86400);
+
+    d.meses = diff / (30 * 86400);
+    diff %= (30 * 86400);
+
+    d.dias = diff / 86400;
+    d.horas = (diff / 3600) % 24;
+    d.minutos = (diff / 60) % 60;
+    d.segundos = diff % 60;
+
+    return d;
+}
+
 /* ========= EXIBIÇÃO ========= */
+/* Agora exibe anos e meses e mostra dica de menu mesmo sem cronômetros */
 void exibir_cronometros() {
     printf("=== CRONÔMETROS ===\n\n");
 
     pthread_mutex_lock(&mutex);
 
     if (total == 0) {
-        printf("Nenhum cronômetro criado.\n\n");
+        printf("Nenhum cronômetro criado.\n");
         pthread_mutex_unlock(&mutex);
+
+        printf("\nENTER = atualizar | m = menu | c = modo contínuo [%s]\n",
+               modo_continuo ? "ON" : "OFF");
         return;
     }
 
@@ -133,17 +174,17 @@ void exibir_cronometros() {
             continue;
         }
 
-        int dias  = diff / 86400;
-        int horas = (diff / 3600) % 24;
-        int min   = (diff / 60) % 60;
-        int sec   = diff % 60;
+        Duracao d = converter_tempo(diff);
 
-        printf("%d) %s [%s]: %d dias %02d:%02d:%02d\n",
-               i + 1,
-               cronos[i].nome,
-               cronos[i].pausado ? "Pausado" :
-               (cronos[i].reverso ? "Regressivo" : "Crescente"),
-               dias, horas, min, sec);
+        printf(
+            "%d) %s [%s]: %d anos, %d meses, %d dias e %02d:%02d:%02d hrs\n",
+            i + 1,
+            cronos[i].nome,
+            cronos[i].pausado ? "Pausado" :
+            (cronos[i].reverso ? "Regressivo" : "Crescente"),
+               d.anos, d.meses, d.dias,
+               d.horas, d.minutos, d.segundos
+        );
     }
 
     pthread_mutex_unlock(&mutex);

@@ -1,4 +1,4 @@
-# ⏱ NoMore — Gerenciador de Tempo em Linha de Comando
+# ⏱️ CoMore — Gerenciador de Tempo em Linha de Comando
 
 Aplicação de linha de comando escrita em **C** para gerenciamento de múltiplos cronômetros simultâneos, com suporte a contagem crescente, regressiva, pausa, retomada, persistência automática em disco e atualização contínua.
 
@@ -13,11 +13,23 @@ O projeto foi desenvolvido com foco em:
 ## 📌 Informações Gerais
 
 - **Nome do Projeto:** Cronômetros em C
-- **Versão:** 1.0
+- **Versão:** 1.1
 - **Autor:** Bandeirinha
 - **Linguagem:** C (padrão POSIX)
 - **Licença:** GNU General Public License v3.0
 - **Plataforma alvo:** Linux / Unix-like
+
+---
+
+## 🔔 NOTA DE ATUALIZAÇÃO
+ 
+ ------------------------------------------------------------
+  • Atualização para acompanhar o calendário real.
+  • Exibição aprimorada de tempo (anos/meses quando aplicável).
+  • Melhorias na apresentação dos cronômetros.
+  • Manutenção da compatibilidade e preservação do funcionamento
+  • clássico da versão 1.0 — sem quebra de comportamento.
+  ------------------------------------------------------------
 
 ---
 
@@ -67,7 +79,7 @@ Além do uso prático, o projeto também serve como **estudo aplicado** de:
 
 ---
 
-## 🛠 Compilação
+## 🛠️ Compilação
 
 ### Requisitos
 
@@ -89,6 +101,6 @@ Além do uso prático, o projeto também serve como **estudo aplicado** de:
 
 - Garante linkagem correta
 
-### ▶ Execução
+### ▶️ Execução
     
-    ./nomore
+    ./cronometros
