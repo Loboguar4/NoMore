@@ -1,4 +1,4 @@
-# ⏱️ CoMore — Gerenciador de Tempo em Linha de Comando
+# ⏱️ NoMore — Gerenciador de Tempo em Linha de Comando
 
 Aplicação de linha de comando escrita em **C** para gerenciamento de múltiplos cronômetros simultâneos, com suporte a contagem crescente, regressiva, pausa, retomada, persistência automática em disco e atualização contínua.
 
