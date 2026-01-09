@@ -23,13 +23,11 @@ O projeto foi desenvolvido com foco em:
 
 ## 🔔 NOTA DE ATUALIZAÇÃO
  
- ------------------------------------------------------------
-  • Atualização para acompanhar o calendário real.
-  • Exibição aprimorada de tempo (anos/meses quando aplicável).
-  • Melhorias na apresentação dos cronômetros.
-  • Manutenção da compatibilidade e preservação do funcionamento
-  • clássico da versão 1.0 — sem quebra de comportamento.
-  ------------------------------------------------------------
+- Atualização para acompanhar o calendário real.
+- Exibição aprimorada de tempo (anos/meses quando aplicável).
+- Melhorias na apresentação dos cronômetros.
+- Manutenção da compatibilidade e preservação do funcionamento
+- clássico da versão 1.0 — sem quebra de comportamento.
 
 ---
 
